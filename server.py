@@ -57,7 +57,7 @@ async def handle_call_tool(name: str, arguments: dict):
 async def chatgpt_handler(request: Request):
     body = await request.json()
     # Ejecutamos la misma lógica que el tool
-    res = await handle_call_tool("registrar_gasto", body)
+    res = await handle_call_tool("registrar_gasto", body.get("params", {}))
     return JSONResponse({"status": "ok", "message": res[0]["text"]})
 
 # 4. Configuración de Rutas y App Starlette
